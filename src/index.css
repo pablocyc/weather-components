@@ -1,0 +1,103 @@
+@font-face {
+  font-family: Roboto;
+  font-weight: 500;
+  src:
+    url("fonts/Roboto-500-normal.woff2") format("woff2"),
+    url("fonts/Roboto-500-normal.woff") format("woff"),
+    url("fonts/Roboto-500-normal.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Montserrat;
+  font-weight: 300;
+  src:
+    url("fonts/Montserrat-300-italic.woff2") format("woff2"),
+    url("fonts/Montserrat-300-italic.woff") format("woff"),
+    url("fonts/Montserrat-300-italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Montserrat;
+  font-weight: 500;
+  src:
+    url("fonts/Montserrat-500-normal.woff2") format("woff2"),
+    url("fonts/Montserrat-500-normal.woff") format("woff"),
+    url("fonts/Montserrat-500-normal.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Montserrat;
+  font-weight: 700;
+  src:
+    url("fonts/Montserrat-700-normal.woff2") format("woff2"),
+    url("fonts/Montserrat-700-normal.woff") format("woff"),
+    url("fonts/Montserrat-700-normal.ttf") format("truetype");
+}
+
+:root {
+  --primary-color: #9f7de1;
+}
+
+html {
+  --bg-color: #baccfd;
+  --card-color: #fff;
+  --text-color: #222;
+}
+
+html[data-theme="dark"] {
+  --bg-color: #123;
+  --card-color: #414148;
+  --text-color: #fff;
+
+  transition: background-color 300ms ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+  margin: 0;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  color: var(--text-color);
+  transition: background-color 300ms ease;
+  font-family: Montserrat, sans-serif;
+}
+
+.switch {
+  width: 64px;
+  padding: 8px;
+
+  --theme-switch-icon-color: #abc;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 2rem;
+  width: 100%;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.today-text {
+  font-size: 1.1rem;
+  font-weight: 300;
+  margin: 0;
+  margin-bottom: 1.5rem;
+}
