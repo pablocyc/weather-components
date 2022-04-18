@@ -19,12 +19,18 @@
     <p class="today-text"></p>
     <sensor-card
       sensor="temperature"
-      unit="°">
-    </sensor-card>
+      unit="°"
+      min="-10"
+      max="85"
+      step="0.1"
+    ></sensor-card>
     <sensor-card
       sensor="humidity"
-      unit="%">
-    </sensor-card>
+      unit="%"
+      min="0"
+      max="100"
+      step="1"
+    ></sensor-card>
   </div>
 </body>
 </html>

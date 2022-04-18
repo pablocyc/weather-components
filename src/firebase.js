@@ -26,8 +26,8 @@ export const getTask = id => getDoc(doc(db, station, id));
 export const onGetTasks = callback => onSnapshot(collection(db, station), callback);
 
 // Update
-export const updateTask = (id, title, description) => {
-  updateDoc(doc(db, station, id), { title, description });
+export const updateTask = (id, newFields) => {
+  updateDoc(doc(db, station, id), newFields);
 };
 
 // Delete

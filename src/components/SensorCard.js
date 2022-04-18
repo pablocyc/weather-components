@@ -1,14 +1,15 @@
 import { onGetTasks } from "../firebase.js";
+import "./AlertSensor.js";
 
 class SensorCard extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.title = this.getAttribute("sensor");
-    this.unit = this.getAttribute("unit");
+    this.attr = this.getAttributeNames();
+    this.attr.forEach(name => {
+      this.attr[name] = this.getAttribute(name);
+    });
     this.value = "0";
-    this.min = "0";
-    this.max = "0";
   }
 
   static get styles() {
@@ -43,20 +44,6 @@ class SensorCard extends HTMLElement {
         font-weight: 500;
         margin: 1rem 0;
       }
-
-      .history {
-        width: 100%;
-        margin-bottom: 2.5rem;
-        font-size: 1.2rem;
-        font-weight: 300;
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-      }
-
-      .min span {
-        margin-left: 0.3rem;
-      }
     `;
   }
 
@@ -70,34 +57,27 @@ class SensorCard extends HTMLElement {
   connectedCallback() {
     onGetTasks(snapshot => {
       snapshot.forEach(doc => {
-        if (doc.id === this.title) {
+        if (doc.id === this.attr.sensor) {
           this.value = doc.data().value;
-          this.min = doc.data().min;
-          this.max = doc.data().max;
+          this.render();
+          this.renderAlert();
         }
       });
-      this.render();
     });
-    this.render();
+  }
+
+  renderAlert() {
+    const sensorCard = document.createElement("alert-sensor");
+    sensorCard.setProps(this.attr.sensor, this.attr.min, this.attr.max, this.attr.step);
+    this.shadowRoot.querySelector(".container").appendChild(sensorCard);
   }
 
   render() {
     this.shadowRoot.innerHTML = /* html */`
     <style>${SensorCard.styles}</style>
     <div class="container">
-      <h1 class="title">${this.toPascalCase(this.title)}</h1>
-      <p class="value">${this.value}${this.unit}</p>
-      <div class="history">
-        <div class="min">
-          <img src="icons/icon-min.svg" alt="icon min">
-          <span>${this.min}${this.unit}</span>
-        </div>
-        <img src="icons/icon-${this.title}.svg" alt="icon sensor" class="icon">
-        <div class="max">
-          <span>${this.max}${this.unit}</span>
-          <img src="icons/icon-max.svg" alt="icon max">
-        </div>
-      </div>
+      <h1 class="title">${this.toPascalCase(this.attr.sensor)}</h1>
+      <p class="value">${this.value}${this.attr.unit}</p>
     </div>`;
   }
 }
