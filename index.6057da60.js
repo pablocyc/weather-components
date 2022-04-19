@@ -84,7 +84,7 @@ import{initializeApp as p}from"https://www.gstatic.com/firebasejs/9.6.3/firebase
         <span class="validity valid-min"></span>
         <img src="icons/icon-min.svg" alt="icon min">
       </div>
-      <img src="/icons/icon-${this.sensor}.svg" alt="icon sensor" class="icon">
+      <img src="icons/icon-${this.sensor}.svg" alt="icon sensor" class="icon">
       <div class="max min-max">
         <input type="number" class="input-max" placeholder="\u2022" step="${this.step}" maxlength="2" max="${this.maxRange}" min="${this.minRange}" required>
         <span class="validity valid-max"></span>
